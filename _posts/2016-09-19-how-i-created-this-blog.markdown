@@ -38,4 +38,23 @@ Jekyll [this](https://jekyllrb.com/docs/home/) site can be visited. However gor 
 help pages](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/).
 
 `Markdown` is used for structured markup writing. It can ease the pain of structuring your written document. Easily layout the writing 
-according to a standard HTML tree.
+according to a standard HTML tree. As an example this page is also written in Markdown, then transformed to HTML by Jekyll. A complete 
+documentation about Markdown can be found [here](https://guides.github.com/features/mastering-markdown/).
+
+Liquid can be used like any normal serve side page rendering engine but for static generation only. It does not have any access to any 
+parameter available at runtime. Like it does not read query parameter. A limited support of pagination can be used with jekyll and Liquid 
+but all pages are generated during build of the project.
+
+I did not mention about it in 'What's being used' section, but Ruby is also used at the backbone of this project. But you really dont need 
+to know about Ruby to work with it. Honestly i dont know anything about Ruby but still i can run this. One thing i can tell you, if you know 
+Ruby and can setup your dev environment, it is much easy to see the layout of your site well before it goes live.
+
+### How I made it work for me
+
+1. First i created the Github repository, I wanted to host
+2. Setup a dev environment, preferably in a linux machine
+3. Followed the documentation available [here](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/) 
+to create a Jekyll project structure
+4. Default generated site does not include layout pages, as it is picked up from the theme itself.
+    And Github presently only support the `Minima` theme only, which is goot for a start, but for most of the sites you will require 
+    to customize it. For a starting point, find the location where Minima Gem is installed
