@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang='{{ page.lang | default: site.lang | default: "en" }}'>
 
 {% include head.html %}
 
@@ -39,7 +39,7 @@
                 <h4>Blog Categories</h4>
                 <div class="row">
                     {% for category in site.categories %}
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <h4 name="{{ category | first }}">{{ category | first }}</h4>
                         <ul>
                             {% for posts in category %}
@@ -57,12 +57,12 @@
                 <!-- /.row -->
             </div>
 
-            <!-- Side Widget Well -->
+            <!-- Side Widget Well
             <div class="well">
                 <h4>Side Widget Well</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus
                     laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-            </div>
+            </div> -->
 
         </div>
 
