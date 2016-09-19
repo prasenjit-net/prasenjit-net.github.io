@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+{% include head.html %}
+
+<body>
+
+{% include header.html %}
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            {{ content }}
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+            <div class="well">
+                <h4>Blog Categories</h4>
+                <div class="row">
+                    {% for category in site.categories %}
+                    <div class="col-lg-6">
+                        <h4 name="{{ category | first }}">{{ category | first }}</h4>
+                        <ul>
+                            {% for posts in category %}
+                            {% for post in posts %}
+                            {% if post.url %}
+                            <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus
+                    laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    {% include footer.html %}
+</div>
+
+<!-- jQuery -->
+<script src='{{ "/js/jquery.js" | prepend: site.baseurl }}'></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src='{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}'></script>
+</body>
+
+</html>
