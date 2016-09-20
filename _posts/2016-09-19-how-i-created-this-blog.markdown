@@ -51,8 +51,32 @@ Ruby and can setup your dev environment, it is much easy to see the layout of yo
 
 ### How I made it work for me
 
-1. First i created the Github repository, I wanted to host
-2. Setup a dev environment, preferably in a linux machine
+### First Github repository
+
+Create the repository under your username or organization. Follow the rules of Github pages for hosting a user page or organization page. 
+You need the name the repository as `<username>.github.io` or `<orgname>.github.io`.
+
+### Setup a dev environment
+
+Preferably in a linux machine. Like i did in a Centos minimal VM. Make sure you are connected to the internet.
+
+First install `Ruby` development edition along with few other libraries with command. You should at least have Ruby version 2.0.0 or above.
+
+{% highlight bash %}
+$ sudo yum install gcc-c++ libffi-devel zlib-devel ruby-devel git
+{% endhighlight %}
+
+```bash
+# check Ruby version
+$ ruby --version
+```
+
+Then install Ruby Gem `bundler` from Gem installer
+
+{% highlight bash %}
+$ gem install bundler
+{% endhighlight %}
+
 3. Followed the documentation available [here](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/) 
 to create a Jekyll project structure
 4. Default generated site does not include layout pages, as it is picked up from the theme itself.
