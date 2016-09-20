@@ -62,9 +62,10 @@ Preferably in a linux machine. Like i did in a Centos minimal VM. Make sure you 
 
 First install `Ruby` development edition along with few other libraries with command. You should at least have Ruby version 2.0.0 or above.
 
-{% highlight bash %}
+```bash
+# install Ruby git and some other required packages
 $ sudo yum install gcc-c++ libffi-devel zlib-devel ruby-devel git
-{% endhighlight %}
+```
 
 ```bash
 # check Ruby version
@@ -73,9 +74,42 @@ $ ruby --version
 
 Then install Ruby Gem `bundler` from Gem installer
 
-{% highlight bash %}
+```bash
+# install bundler for Ruby package management
 $ gem install bundler
-{% endhighlight %}
+```
+
+Now clone your empty repository into a local folder. And switch the required branch as per the convention. Branch `master` for user or 
+organization site, and `gh-pages` for project site. This is configurable too.
+
+```bash
+# clone repository
+$ git clone <gihub repo url>
+# create branch if it is project site
+$ git checkout -b gh-pages
+```
+
+### Create project files
+
+Now create a file named `Gemfile`. This will hold the Ruby gem configuration for the project.
+
+```bash
+$ cd <project-dir>
+$ touch Gemfile
+```
+
+Now edit the file in editor and put below files in there.
+
+```ruby
+source 'https://rubygems.org'
+gem 'github-pages', group: :jekyll_plugins
+```
+
+Now run the below bundler command to automatically install all required Gem along with Jekyll.
+
+```bash
+$ bundle install
+```
 
 3. Followed the documentation available [here](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/) 
 to create a Jekyll project structure
