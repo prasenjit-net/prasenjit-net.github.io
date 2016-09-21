@@ -51,12 +51,12 @@ Ruby and can setup your dev environment, it is much easy to see the layout of yo
 
 ### How I made it work for me
 
-### First Github repository
+#### First Github repository
 
 Create the repository under your username or organization. Follow the rules of Github pages for hosting a user page or organization page. 
 You need the name the repository as `<username>.github.io` or `<orgname>.github.io`.
 
-### Setup a dev environment
+#### Setup a dev environment
 
 Preferably in a linux machine. Like i did in a Centos minimal VM. Make sure you are connected to the internet.
 
@@ -89,7 +89,7 @@ $ git clone <gihub repo url>
 $ git checkout -b gh-pages
 ```
 
-### Create project files
+#### Create project files
 
 Now create a file named `Gemfile`. This will hold the Ruby gem configuration for the project.
 
@@ -105,14 +105,63 @@ source 'https://rubygems.org'
 gem 'github-pages', group: :jekyll_plugins
 ```
 
-Now run the below bundler command to automatically install all required Gem along with Jekyll.
+Now run the below bundler command to automatically install all required Gems along with Jekyll.
 
 ```bash
 $ bundle install
 ```
 
-3. Followed the documentation available [here](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/) 
-to create a Jekyll project structure
-4. Default generated site does not include layout pages, as it is picked up from the theme itself.
-    And Github presently only support the `Minima` theme only, which is goot for a start, but for most of the sites you will require 
-    to customize it. For a starting point, find the location where Minima Gem is installed
+At this point the project is ready but without any source file. Now to generate a scaffolding execute the below command.
+
+```bash
+$ bundle exec jekyll new . --force
+```
+
+This will override the Gemfile file. Now open it in editor and comment, uncomment or add as the snipped below.
+
+```ruby
+# comment
+#gem "jekyll", "3.2.1"
+
+# uncomment
+gem "github-pages", group: :jekyll_plugins
+
+# add
+gem "therubyracer"
+```
+
+The last one is added to enable dev server with a javascript engine. This one is not required if node.js is installed. 
+After this your site is ready. You can commit the files generated and push to see it go online. At 
+https://username.github.io or https://orgname.github.io as per your configuration.
+
+To run the dev server execute the command. You can see your site locally with some browser.
+
+```bash
+$ bundle exec jekyll serve
+```
+
+### Customize Layout
+
+There are many theme available for Jekyll, but Github officially support only minima theme. So if you want to use other theme 
+You either need to customize it or build the site by yourself from `master` branch and push the generated files to the `gh-pages` 
+branch. This is not easy as every time all files will be modified and pushed to Github. But you can use a CI/CD for that and Travis is 
+best way to go. For example see https://github.com/prasenjit-net/jekyll-asciidoc-quickstart.git. But customizing will give you much more 
+flexibility.
+
+Now you can see the auto generated site does'nt look good as per the modern web site layout. To start customize your layout 
+you need to have a starting point, for that you can import the files available in theme minima and start from there. To 
+do that follow instructions below
+
+```bash
+# Find the file location of minima
+$ bundle show minima
+/usr/local/share/gems/gems/minima-1.2.0
+# copy the files from there
+$ cp -r /usr/local/share/gems/gems/minima-1.2.0/_layout .
+$ cp -r /usr/local/share/gems/gems/minima-1.2.0/_includes .
+$ cp -r /usr/local/share/gems/gems/minima-1.2.0/_sass .
+```
+
+Now you have a starting point. Go and have a look at those files to understand the structure of the 
+files. You can use any theme available with you or create one with `bootstrap`. For a reference have a look at my 
+project at https://github.com/prasenjit-net/site.git to understand more about layout.
