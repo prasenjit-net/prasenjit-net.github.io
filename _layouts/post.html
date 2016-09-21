@@ -3,17 +3,22 @@ layout: default
 ---
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <h1 class="page-header">
-        {{ page.title | escape }}
-        <p>
-            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d,
-                %Y" }}
-            </time>
-            {% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span
-                itemprop="name">{{ page.author }}</span></span>{% endif %}
-        </p>
-    </h1>
-    {{ content }}
+    <header>
+        <h1 class="page-header">
+            {{ page.title | escape }}
+            <p>
+                <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b
+                    %-d,
+                    %Y" }}
+                </time>
+                {% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span
+                    itemprop="name">{{ page.author }}</span></span>{% endif %}
+            </p>
+        </h1>
+    </header>
+    <div itemprop="articleBody">
+        {{ content }}
+    </div>
 
     {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
