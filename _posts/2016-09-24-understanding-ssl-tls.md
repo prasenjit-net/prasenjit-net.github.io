@@ -2,7 +2,7 @@
 layout: post
 title: "Understanding SSL/TLS"
 date: 2016-09-24 12:40:41 -0530
-categories: security ssl tls
+categories: security
 ---
 
 Secure Socket Layer, a lot of developer has misconception about it. What is it? Why it is used? I will try to cover some detail about it. Also what is SSL authentication or 2 way SSL? Will also try to cover some details about certificate and certificate chain.
