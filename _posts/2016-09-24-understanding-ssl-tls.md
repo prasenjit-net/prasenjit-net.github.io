@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Basic Understanding About SSL or TLS"
+title: "Understanding SSL/TLS"
 date: 2016-09-24 12:40:41 -0530
 categories: security ssl tls
 ---
