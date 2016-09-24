@@ -33,7 +33,7 @@ Now here if the `k1` and `k2` is equal, then this encryption/decryption logic is
 
 Lets think about what is required to use a symmetric algorithm. In symmetric algorithm `k1 = k2 = k`. So in a communication, when server sends some data to client encrypting the data with `k`, then to understand the data client also require to use `k`. Which means server need to send `k` to client unencrypted before they can engage into a secure communication. But sending the **key** over the network, even for once, un encrypted, makes the communication easy to be disclosed.
 
-Now for asymmetric algorithm, `k1 != k2`. So server can share one key with client and one key can be kept private. After this key exchange server can send some data to client after encrypting it with server's key and client can decrypt that with the key shared - simple; but will cover [detail later](#high-level-details). Before that lets be clear on some terminology and fact.
+Now for asymmetric algorithm, `k1 != k2`. So server can share one key with client and one key can be kept private. After this key exchange server can send some data to client after encrypting it with server's key and client can decrypt that with the key shared - simple; but will cover [detail later](#how-ssltls-works). Before that lets be clear on some terminology and fact.
 
 * `k1` and `k2` are generated together and generated in such a way that they make the above equation true, and only between themselves.
 * One key among them is called **Private Key**, and the another is called **Public Key**.
@@ -47,6 +47,18 @@ Now for asymmetric algorithm, `k1 != k2`. So server can share one key with clien
 
 ### How SSL/TLS Works
 
-Yes actually for a secure communication this procedure is not so easy. Consider few of the problems, someone sitting in the middle and create a proxy of trust with each party and watch the communicated data, and many others. SSL and its successor TLS solves this issue.
+Consider few of the problems, someone sitting in the middle and create a proxy of trust with each party and watch the communicated data, and many others. SSL and its successor TLS solves this issue by few steps.
 
-* After building a TCP connection
+* Handshake
+
+   After building a TCP connection, client starts a SSL handshake. Here the client can be a browser, putty or any application which is trying to access a SSL enables endpoint. In this process client sends
+   
+   1. Supported **SSL/TLS version**
+   2. Supported **cypher suites**
+   3. Supported **compression methods**
+   
+   Server checks and matches with himself, what is the highest supported SSL/TLS version supported by both, a cypher suite supported by both and a compression method. After this the basic setup is done.
+   
+* Establish Trust
+
+   
