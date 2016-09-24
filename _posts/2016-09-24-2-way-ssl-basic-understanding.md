@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "2 Way SSL Everything About It"
+title: "2 Way SSL Basic Understanding"
 date: 2016-09-24 12:40:41 -0530
 categories: java ssl security
 ---
