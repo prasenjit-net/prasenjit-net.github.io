@@ -2,7 +2,7 @@
 layout: post
 title: "How I created this blog"
 date: 2016-09-19 17:38:41 -0530
-categories: blog jekyll
+categories: blog
 ---
 
 In present days blog is a very effective way to express the thoughts created inside mind. I am also starting to explore 
