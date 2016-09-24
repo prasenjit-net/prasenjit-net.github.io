@@ -2,7 +2,7 @@
 layout: post
 title: "Basic Understanding About SSL or TLS"
 date: 2016-09-24 12:40:41 -0530
-categories: java ssl security tls
+categories: security ssl tls
 ---
 
 Secure Socket Layer, a lot of developer has misconception about it. What is it? Why it is used? I will try to cover 
