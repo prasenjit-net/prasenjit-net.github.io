@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "2 Way SSL Basic Understanding"
+title: "Basic Understanding About SSL or TLS"
 date: 2016-09-24 12:40:41 -0530
 categories: java ssl security
 ---
