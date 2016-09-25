@@ -47,7 +47,9 @@ Now for asymmetric algorithm, `k1 != k2`. So server can share one key with clien
 
 ### What is Digital Signature and Digital Certificate?
 
-Signature is a special type of cypher where a data is uniquely represented by a smaller data, with the help of a key. This newly generated data can not recover the original data, but it is possible to verify the integrity of the data with the help of Signature and a key. Now if data is `d`, signing key is `sk`, verifying key is `vk` and signature is `s`, then these can be represented as below.
+#### Digital Signature
+
+Digital Signature is a special type of cypher where a data is uniquely represented by a smaller data, with the help of a key. This newly generated data can not recover the original data, but it is possible to verify the **integrity of the data** with the help of Signature and a key. Now if data is `d`, signing key is `sk`, verifying key is `vk` and signature is `s`, then these can be represented as below.
 
 ```
 # create signature
@@ -55,6 +57,23 @@ s = sign( d, sk)
 # verify integrity
 verify( d, vk, s) is true
 ```
+
+This procedure helps in verifying the integrity of the data. In case the data is modified by any attacker, signature will not match and the recipient will immediately know the data is modified. Now this goes well with Asymmetric key. The Private Key can be used to sign the data, and Public Key can be used to verify the integrity.
+
+#### Digital Certificate
+
+Digital Certificate (X.509 Certificate) is a simple piece of standard information which identifies the party, and tells about the party who is he, and what he is capable of doing. The party can present this Certificate to anyone whom he wants to prove identity. Now if Certificate is a simple piece of information to be shared, then where is the authenticity of it. Just like if you present a piece of paper saying that you are a Engineer, who is going to believe without the **Signature** of educational authority. It is also same for a Digital Certificate, that it is valid only when it is Digitally Signed by some known and trusted identity.
+
+For example of above fact. Lets consider, every party will have a `Private Key`(sk), a `Public Key`(vk) and a `Certificate`(c). Then Certificate is a superset of Public Key and some additional information.
+
+```
+c = vk + sign( vk, sk)
+```
+
+Lets also consider we have three party here, `p1`, `p2` and `p3`. If `p1` signs `p2` and `p2` signs `p3` then, if someone trusts `p1` then he should also trust `p3`. This is how your browser trusts `google.com` as its certificate is signed by `GeoTrust` and GeoTrust is trusted by your browser.
+
+> Top level Certificates are always signed by the owner itself
+> This way you can create your own `Self Signed Certificate`, but that may not be trusted by others.
 
 ### How SSL/TLS Works
 
@@ -75,7 +94,8 @@ Consider few of the problems, someone sitting in the middle and create a proxy o
    After the basic negotiation is done, server sends its `Certificate Chain` to client for verification. Clients checks the certificate with its own database if the certificate itself is found or the signer is found to be trusted. And the certificate matches with the server's name the client is talking to. Basically this authenticity check can be split into two part.
    
    1. Certificate Trust Check; checks if the certificate is trusted, or the signer of the certificate is trusted.
-   2. Hostname Verification; checks with the hostname the client is connecting to withe the properties in certificate.
+   2. Optional Client Certificate Check; in this optional step server asks client to present its certificate and server checks the trust. If this step is present then it is called a `SSL authentication` or `2 Way SSL`.
+   3. Hostname Verification; checks with the hostname the client is connecting to withe the properties in certificate.
    
 * Exchange Symmetric Key
 
