@@ -11,7 +11,7 @@ Secure Socket Layer, a lot of developer has misconception about it. What is it? 
 
 SSL, which stands for `Secure Socket Layer`, is a protocol to communicate over network with a secure channel. It adds a layer of security over the simple socket communication. It is built directly on top of TCP protocol (although there are some implementation which works on UDP). It gives a layer of security to the application level protocols such as HTTP. With the fact that SSL works on top of TCP, HTTP becomes virtually equals to HTTPS.
 
-### What is Encryption/Decryption
+### What is Encryption/Decryption?
 
 To understand how SSL/TLS works, you need to know a little about encryption or encryption algorithms. 
 
@@ -45,20 +45,39 @@ Now for asymmetric algorithm, `k1 != k2`. So server can share one key with clien
 * Symmetric: **AES**, **DES**
 * Asymmetric: **RSA**, **DSA**
 
+### What is Digital Signature and Digital Certificate?
+
+Explain digital signature and certificate.
+
 ### How SSL/TLS Works
 
-Consider few of the problems, someone sitting in the middle and create a proxy of trust with each party and watch the communicated data, and many others. SSL and its successor TLS solves this issue by few steps.
+Consider few of the problems, someone sitting in the middle and create a proxy of trust with each party and watch the communicated data, and many others. SSL and its successor TLS solves this issue by a process called handshake. Handshake cak be broken into three further steps.
 
-* Handshake
+* Negotiate Basic Standards
 
-   After building a TCP connection, client starts a SSL handshake. Here the client can be a browser, putty or any application which is trying to access a SSL enables endpoint. In this process client sends
+   After building a TCP connection, client starts the SSL handshake. Here the client can be a browser, putty or any application which is trying to access a SSL enables endpoint. In this process client sends
    
    1. Supported **SSL/TLS version**
    2. Supported **cypher suites**
    3. Supported **compression methods**
    
-   Server checks and matches with himself, what is the highest supported SSL/TLS version supported by both, a cypher suite supported by both and a compression method. After this the basic setup is done.
+   Server checks and matches with himself, what is the highest SSL/TLS version supported by both, a cypher suite supported by both and a compression method. And both agrees upon that.
    
 * Establish Trust
 
+   After the basic negotiation is done, server sends its `Certificate Chain` to client for verification. Clients checks the certificate with its own database if the certificate itself is found or the signer is found to be trusted. And the certificate matches with the server's name the client is talking to. Basically this authenticity check can be split into two part.
    
+   1. Certificate Trust Check; checks if the certificate is trusted, or the signer of the certificate is trusted.
+   2. Hostname Verification; checks with the hostname the client is connecting to withe the properties in certificate.
+   
+* Exchange Symmetric Key
+
+   After client is sure about the trust for server, it now generates a symmetric key for the algorithm already been agreed upon in [negotiation](#negotiate-basic-standards) phase. Then client encrypts the key with the public key came from the server along with the certificate and sends that to the server. As it is encrypted with public key, it can only be decrypted with the private key available with server. Now the SSL handshake is done, and both parties can now use the symmetric key for encryption and decryption and enjoy a secure transport session.
+   
+After this handshake is over, normal HTTP protocol messages can be exchanged. This connection/session is normally kept open longer for repetitive use. At the nd of use client or server can initiate a connection close message and both can end the connection gracefully. After all these done properly an attacker in the middle can see every bit of information, but thanks to the encryption, he can not understand anything about it. Typically a attacker can understand
+
+1. How much data is being transferred
+2. The IP/PORT the client is connecting to
+3. The hostname the client is connecting to (because of DNS query)
+4. The cyphers which are being used by both parties
+5. Attacker can end the connection forcefully. but in that case both party will be notified about that
