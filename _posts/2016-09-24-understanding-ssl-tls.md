@@ -47,7 +47,14 @@ Now for asymmetric algorithm, `k1 != k2`. So server can share one key with clien
 
 ### What is Digital Signature and Digital Certificate?
 
-Explain digital signature and certificate.
+Signature is a special type of cypher where a data is uniquely represented by a smaller data, with the help of a key. This newly generated data can not recover the original data, but it is possible to verify the integrity of the data with the help of Signature and a key. Now if data is `d`, signing key is `sk`, verifying key is `vk` and signature is `s`, then these can be represented as below.
+
+```
+# create signature
+s = sign( d, sk)
+# verify integrity
+verify( d, vk, s) is true
+```
 
 ### How SSL/TLS Works
 
