@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Java How To SSL"
-date: 2016-09-19 17:38:41 -0530
 categories: security
 ---
 
