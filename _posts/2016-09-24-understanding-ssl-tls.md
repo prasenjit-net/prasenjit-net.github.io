@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding SSL/TLS"
-date: 2016-09-24 12:40:41 -0530
+date: 2016-09-24 12:40:41 +0530
 categories: security
 ---
 
