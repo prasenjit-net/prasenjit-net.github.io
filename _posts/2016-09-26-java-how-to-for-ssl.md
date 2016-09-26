@@ -19,3 +19,10 @@ Normally when some website uses valid certificate, then as a java client can acc
 
 ## Properties of a Valid Certificate
 
+There are few things which determines whether the Certificate is valid or not. We can categorize these in three broad groups.
+
+### Security algorithm, strength and validity
+
+### Signature validity, trust and *[CRL]: Certificate Revocation List
+
+### Certificate restrictions and applicability
