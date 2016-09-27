@@ -46,15 +46,15 @@ Checks for this category are as per the certificate extension attribute specific
 
 1. Basic Constraint; if the certificate is a CA, if true then it should not be used for SSL.
    
-   ![Basic Constraint]({{ site.url }}/images/certificate_basic_constraint.PNG)
+   ![Basic Constraint]({{ site.url }}/images/{{ page.title | slugify }}/certificate_basic_constraint.PNG)
 
 2. Key Usage; checks whether the key can be used for the inted purpose like Digital Signature, Encipher or any other.
    
-   ![Key Usage]({{ site.url }}/images/certificate_key_usage.PNG)
+   ![Key Usage]({{ site.url }}/images/{{ page.title | slugify }}/certificate_key_usage.PNG)
 
 3. Extended Key Usage; checks if the certificate should be used for TLS server/TLS client. Or any other purpose like Code Sign or smart card login.
 
-   ![Extended Key Usage]({{ site.url }}/images/certificate_extended_key_usage.PNG)
+   ![Extended Key Usage]({{ site.url }}/images/{{ page.title | slugify }}/certificate_extended_key_usage.PNG)
 
 4. Subject Alternative Name; checks if the certificate is really for the use of the hostname the client is connecting to.
 
