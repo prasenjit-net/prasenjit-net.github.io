@@ -58,4 +58,4 @@ Checks for this category are as per the certificate extension attribute specific
 
 4. Subject Alternative Name; checks if the certificate is really for the use of the hostname the client is connecting to.
 
-   ![Subject Alternative Name]({{ site.url }}/images/{{ post.slug }}/certificate_subject_alternate_name.PNG)
+   ![Subject Alternative Name]({{ site.url }}/images/{{ page.title | slugify }}/certificate_subject_alternate_name.PNG)
