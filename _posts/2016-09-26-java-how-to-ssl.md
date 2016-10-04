@@ -19,7 +19,7 @@ Normally when some website uses valid certificate, then as a java client you can
 
 ## Properties of a Valid Certificate
 
-There are few things which determines whether the Certificate is valid or not. We can categorize these in three broad category. All proper Certificate validation should follow these.
+There are few things which determines whether the Certificate is valid or not. We can categorize these in three broad category. All proper Certificate validation should follow these. Below set of are not everything, there may be many more. Even for other security purposes.
 
 > I would recommend a nice graphical application named [Keystore Explorer](http://www.keystore-explorer.org/) to understand more about the certificate, Key, Sign etc.
 
@@ -59,3 +59,17 @@ Checks for this category are as per the certificate extension attribute specific
 4. Subject Alternative Name; checks if the certificate is really for the use of the hostname the client is connecting to.
 
    ![Subject Alternative Name]({{ site.url }}/images/{{ page.title | slugify }}/certificate_subject_alternate_name.PNG)
+
+## How to handle Self Signed Certificate
+
+The situation for trusting self signed certificate can be like this.
+
+The project is in development environment and in this environment all certificates self signed, but when it goes to production, certificates are properly signed by Certificate Authority. In this situation there is three way to handle it, and again coding for it should be the last option.
+
+1. Option 1 - Import the certificate to java global trust
+
+   You import the self signed certificate into your development time machine's jre. This is usually available at `%JAVA_HOME\jre\lib\security\cacerts`. You can use java provided CLI tool `keytool` or use the GUI  mentioned above. Advantage of it: easy, doesnt need anything to be done in code or startup time. Disadvantage: maybe a security risk depending on how you use the JRE, you may not have access to this file.
+    
+2. Option 2 - Provide a truststore JVM parameter
+
+   You can create a keystore file and import all the certificate you want to trust, and provide that during startup of your program in dev environment. The parameters are `-Djavax.net.ssl.trust*` available as standard JVM argument. 
