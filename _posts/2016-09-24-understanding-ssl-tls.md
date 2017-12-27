@@ -77,7 +77,7 @@ Lets also consider we have three party here, `p1`, `p2` and `p3`. If `p1` signs 
 
 ### How SSL/TLS Works
 
-Consider few of the problems, someone sitting in the middle and create a proxy of trust with each party and watch the communicated data, and many others. SSL and its successor TLS solves this issue by a process called handshake. Handshake cak be broken into three further steps.
+Consider few of the problems, someone sitting in the middle and create a proxy of trust with each party and watch the communicated data, and many others. SSL and its successor TLS solves this issue by a process called handshake. Handshake can be broken into three further steps.
 
 * Negotiate Basic Standards
 
